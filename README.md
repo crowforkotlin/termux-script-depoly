@@ -1,0 +1,1 @@
+> windows双击bat直接安装termux以及脚本 运行termux, pkg install python、vim，修改logcat.py 的包名，程序会在后台打印日志
