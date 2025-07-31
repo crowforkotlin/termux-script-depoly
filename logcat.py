@@ -1,7 +1,7 @@
 #!/data/data/com.termux/files/usr/bin/python3
 # -*- coding: utf-8 -*-
 """
-Termux Logcat监控器 - 专门监控需要的包的日志
+Termux Logcat监控器 - 监控指定包的日志
 author: crowforkotlin
 date: 2025-07-21
 
@@ -304,15 +304,19 @@ class LogcatMonitor:
             self.process = subprocess.Popen(cmd,
                                             stdout=subprocess.PIPE,
                                             stderr=subprocess.PIPE,
-                                            universal_newlines=True,
                                             bufsize=1)
 
             # 在后台线程中读取日志
             def read_logcat():
                 try:
-                    for line in iter(self.process.stdout.readline, ''):
+                    # 修正2: 循环读取字节行 (readline)，直到遇到空字节串 b''
+                    for byte_line in iter(self.process.stdout.readline, b''):
                         if not self.running:
                             break
+
+                        # 修正3: 将字节行解码为字符串，并处理可能出现的编码错误
+                        # errors='replace' 会将无效字符替换为 '�'
+                        line = byte_line.decode('utf-8', errors='replace')
 
                         if line.strip():
                             self.write_log_line(line.strip())
