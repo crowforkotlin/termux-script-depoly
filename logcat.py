@@ -625,7 +625,7 @@ def show_help():
 
 def main():
     """主函数"""
-    parser = argparse.ArgumentParser(description='Logcat监控器 - 监控com.log.ymtest包')
+    parser = argparse.ArgumentParser(description=f'Logcat0监控器 - 监控{PACKAGE_NAME}包')
     parser.add_argument('action', nargs='?', default='help',
                         choices=['start', 'stop', 'status', 'fg', 'check', 'help'],
                         help='操作: start(后台启动), stop(停止), status(状态), fg(前台运行), check(检查依赖)')
