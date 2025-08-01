@@ -32,12 +32,12 @@ import argparse
 import threading
 
 # 配置常量
-PACKAGE_NAME = "com.xxx.xxx"
-LOG_DIR = "/sdcard/logcat_logs"
-MAX_FILE_SIZE = 200 * 1024 * 1024  # 200MB
-MAX_FILES = 450
-PID_FILE = "/sdcard/logcat_logs/.logcat_monitor.pid"
-STATUS_FILE = "/sdcard/logcat_logs/.monitor_status.json"
+PACKAGE_NAME = "com.xxx.xxx" # 这里修改你想监控的包名
+LOG_DIR = "/sdcard/logcat_logs" # 日志初始在这个文件夹下
+MAX_FILE_SIZE = 200 * 1024 * 1024  # 一个日志最多 200MB
+MAX_FILES = 450 # 最多可以打印多少份日志文件
+PID_FILE = "/sdcard/logcat_logs/.logcat_monitor.pid"  # 当前监控包名的PID
+STATUS_FILE = "/sdcard/logcat_logs/.monitor_status.json" # 当前监控状态
 
 class LogcatMonitor:
     def __init__(self):
